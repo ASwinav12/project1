@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(18, 18, 18, 0.95);
+    border-bottom: 1px solid #222;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #ff3333;
+}
+
+.logo strong {
+    color: #fff;
+}
+
+.nav-links a {
+    color: #bbb;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff3333;
+}
+
+.cta-btn, .btn-primary {
+    background-color: #ff3333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cta-btn:hover, .btn-primary:hover {
+    background-color: #e02828;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://unsplash.com') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 25px;
+    max-width: 500px;
+}
+
+/* Showroom Section */
+.showroom-section {
+    padding: 100px 8%;
+    background-color: #181818;
+}
+
+.showroom-section h2, .catalog-section h2, .testdrive-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #fff;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 50px;
+}
+
+.showroom-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.bike-display {
+    flex: 1;
+}
+
+.bike-display img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: opacity 0.4s ease;
+}
+
+.bike-details {
+    flex: 1;
+}
+
+.bike-details h3 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.bike-details p {
+    color: #aaa;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.specs-grid {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.spec-card {
+    background: #222;
+    padding: 15px;
+    border-radius: 6px;
+    flex: 1;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.spec-card i {
+    color: #ff3333;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.spec-card span {
+    display: block;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.spec-card strong {
+    color: #fff;
+    font-size: 1rem;
+}
+
+.model-selector {
+    display: flex;
+    gap: 10px;
+}
+
+.model-btn {
+    background: #222;
+    border: 1px solid #333;
+    color: #aaa;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.model-btn.active, .model-btn:hover {
+    background: #ff3333;
+    color: #fff;
+    border-color: #ff3333;
+}
+
+/* Catalog Section */
+.catalog-section {
+    padding: 100px 8%;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0 50px;
+}
+
+.filter-btn {
+    background: #222;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: #ff3333;
+    color: #fff;
+    border-color: #ff3333;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.catalog-card {
+    background: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #282828;
+    transition: transform 0.3s;
+}
+
+.catalog-card:hover {
+    transform: translateY(-5px);
+}
+
+.catalog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h3 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.card-body .price {
+    color: #ff3333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn-outline {
+    display: inline-block;
+    border: 1px solid #ff3333;
+    color: #ff3333;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-outline:hover {
+    background: #ff3333;
+    color: #fff;
+}
+
+/* Test Drive Section */
+.testdrive-section {
+    padding: 100px 8%;
+    background-color: #181818;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #1f1f1f;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.testdrive-section h2 {
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px;
+    background: #121212;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.full-width {
+    width: 100%;
+    padding: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #0d0d0d;
+    color: #666;
+    border-top: 1px solid #222;
+}
