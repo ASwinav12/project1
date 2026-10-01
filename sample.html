@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Moto | Premium Bike Showroom</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-motorcycle"></i> Apex<strong>Moto</strong>
+        </div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#showroom">Showroom</a>
+            <a href="#catalog">Catalog</a>
+            <a href="#testdrive">Test Drive</a>
+        </nav>
+        <a href="#testdrive" class="cta-btn">Book Ride</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ride the Future of Speed</h1>
+            <p>Explore elite sports bikes, cruisers, and streetfighters engineered for pure adrenaline.</p>
+            <a href="#showroom" class="btn-primary">Explore Showroom</a>
+        </div>
+    </section>
+
+    <!-- Interactive Showroom / Spotlight -->
+    <section id="showroom" class="showroom-section">
+        <h2>Showroom Spotlight</h2>
+        <p class="section-subtitle">Select a model to view live configurations & specs</p>
+        
+        <div class="showroom-container">
+            <div class="bike-display">
+                <img id="active-bike-img" src="https://unsplash.com" alt="Featured Bike">
+            </div>
+            <div class="bike-details">
+                <h3 id="bike-title">Apex Thunder X1</h3>
+                <p id="bike-desc">A heavy-duty beast built for long highways and aggressive acceleration, featuring dual-channel ABS and liquid-cooled engine.</p>
+                
+                <div class="specs-grid">
+                    <div class="spec-card">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <span>Top Speed</span>
+                        <strong id="spec-speed">240 km/h</strong>
+                    </div>
+                    <div class="spec-card">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Horsepower</span>
+                        <strong id="spec-hp">115 HP</strong>
+                    </div>
+                    <div class="spec-card">
+                        <i class="fa-solid fa-weight-scale"></i>
+                        <span>Weight</span>
+                        <strong id="spec-weight">185 kg</strong>
+                    </div>
+                </div>
+
+                <div class="model-selector">
+                    <button class="model-btn active" onclick="changeBike('thunder')">Thunder X1</button>
+                    <button class="model-btn" onclick="changeBike('velocity')">Velocity R6</button>
+                    <button class="model-btn" onclick="changeBike('shadow')">Shadow Cruiser</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filterable Catalog -->
+    <section id="catalog" class="catalog-section">
+        <h2>Our Fleet Collection</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterCatalog('all')">All</button>
+            <button class="filter-btn" onclick="filterCatalog('sports')">Sports</button>
+            <button class="filter-btn" onclick="filterCatalog('cruiser')">Cruisers</button>
+        </div>
+
+        <div class="catalog-grid">
+            <div class="catalog-card" data-category="sports">
+                <img src="https://unsplash.com" alt="Bike">
+                <div class="card-body">
+                    <h3>Vortex RR</h3>
+                    <p class="price">$14,500</p>
+                    <a href="#testdrive" class="btn-outline">Inquire</a>
+                </div>
+            </div>
+            <div class="catalog-card" data-category="cruiser">
+                <img src="https://unsplash.com" alt="Bike">
+                <div class="card-body">
+                    <h3>Iron Hawk 500</h3>
+                    <p class="price">$11,200</p>
+                    <a href="#testdrive" class="btn-outline">Inquire</a>
+                </div>
+            </div>
+            <div class="catalog-card" data-category="sports">
+                <img src="https://unsplash.com" alt="Bike">
+                <div class="card-body">
+                    <h3>Stinger 900</h3>
+                    <p class="price">$16,800</p>
+                    <a href="#testdrive" class="btn-outline">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Drive Booking Form -->
+    <section id="testdrive" class="testdrive-section">
+        <div class="form-container">
+            <h2>Book a Free Test Drive</h2>
+            <form id="booking-form" onsubmit="handleBooking(event)">
+                <div class="input-group">
+                    <input type="text" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <select id="selected-model" required>
+                        <option value="">Choose Preferred Model</option>
+                        <option value="Thunder X1">Apex Thunder X1</option>
+                        <option value="Velocity R6">Velocity R6</option>
+                        <option value="Shadow Cruiser">Shadow Cruiser</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="date" id="ride-date" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Confirm Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Apex Moto Showroom. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
