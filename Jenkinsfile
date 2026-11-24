@@ -11,7 +11,7 @@ pipeline {
                 git clone https://github.com/ASwinav12/project1.git
                 ls -la
             '''
-            stash name:'web', includes: 'project1.git/**'
+            stash name:'web', includes: 'project1/**'
         }
     }
     stage('deploy'){
@@ -23,7 +23,7 @@ pipeline {
             unstash 'web'
             sh '''
                 sudo rm -rf /var/www/html/*
-                sudo cp -r project1.git/* /var/www/html/
+                sudo cp -r project1/* /var/www/html/
                 ls -la /var/www/html/
             '''
             }
