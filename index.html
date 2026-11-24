@@ -1,479 +1,475 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamFlix — Watch TV Shows Online, Watch Movies Online</title>
+  <style>
+    :root {
+      --bg-dark: #000000;
+      --bg-card: #141414;
+      --bg-faq: #2d2d2d;
+      --bg-faq-hover: #414141;
+      --accent-red: #e50914;
+      --accent-red-hover: #f40612;
+      --text-main: #ffffff;
+      --text-muted: #b3b3b3;
+      --border-subtle: #222222;
+    }
 
-  <meta
-    name="description"
-    content="Nova — Creative Digital Studio"
-  >
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <title>Nova — Creative Digital Studio</title>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
 
-  <link rel="stylesheet" href="style.css">
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0.85) 100%),
+        url("https://images.unsplash.com/photo-1574267432553-4b4628081c31?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      border-bottom: 8px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 32px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--accent-red);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .lang-select {
+      background-color: rgba(15, 15, 15, 0.8);
+      color: var(--text-main);
+      border: 1px solid #555;
+      padding: 7px 12px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .btn-signin {
+      background-color: var(--accent-red);
+      color: var(--text-main);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn-signin:hover {
+      background-color: var(--accent-red-hover);
+    }
+
+    /* Hero Content */
+    .hero-content {
+      flex: 1;
+      max-width: 780px;
+      margin: auto;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero-content p.subtitle {
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      margin-bottom: 20px;
+    }
+
+    .hero-content p.cta-caption {
+      font-size: 1rem;
+      color: #e5e5e5;
+      margin-bottom: 16px;
+    }
+
+    /* Signup Form */
+    .signup-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .signup-form input[type="email"] {
+      flex: 1 1 320px;
+      padding: 15px 16px;
+      font-size: 1rem;
+      color: var(--text-main);
+      background-color: rgba(22, 22, 22, 0.85);
+      border: 1px solid #666;
+      border-radius: 4px;
+    }
+
+    .signup-form input[type="email"]:focus {
+      outline: 2px solid var(--text-main);
+      outline-offset: 1px;
+    }
+
+    .btn-get-started {
+      background-color: var(--accent-red);
+      color: var(--text-main);
+      border: none;
+      padding: 15px 24px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-get-started:hover {
+      background-color: var(--accent-red-hover);
+    }
+
+    .form-message {
+      width: 100%;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #46d369;
+      min-height: 22px;
+    }
+
+    /* Trending / Catalog Row */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 32px;
+      border-bottom: 8px solid var(--border-subtle);
+    }
+
+    .section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 24px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .poster-card {
+      background-color: var(--bg-card);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.25s ease;
+    }
+
+    .poster-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .poster-card img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .poster-info {
+      padding: 12px 14px;
+    }
+
+    .poster-info h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .poster-info span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-box {
+      background: linear-gradient(145deg, #1d1b33, #121218);
+      border: 1px solid #2b2b3d;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .feature-box h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background-color: var(--bg-faq);
+      color: var(--text-main);
+      border: none;
+      padding: 20px 24px;
+      font-size: 1.15rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .faq-question:hover {
+      background-color: var(--bg-faq-hover);
+    }
+
+    .faq-answer {
+      display: none;
+      background-color: var(--bg-faq);
+      border-top: 1px solid var(--bg-dark);
+      padding: 20px 24px;
+      color: #e5e5e5;
+      font-size: 1rem;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-icon {
+      font-size: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 32px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-
 <body>
-
-  <!-- Custom Cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-
-  <!-- Animated Background -->
-  <div class="background">
-    <div class="grid"></div>
-
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-
-    <div class="noise"></div>
-  </div>
-
-  <!-- Navigation -->
-  <header class="nav">
-
-    <a href="#home" class="logo magnetic">
-      N<span>O</span>VA
-    </a>
-
-    <button class="menu-toggle" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-    </button>
-
-    <nav class="nav-links">
-      <a href="#home" class="active">Home</a>
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
+  <header class="hero">
+    <nav class="navbar" aria-label="Primary Navigation">
+      <a href="#" class="logo">STREAMFLIX</a>
+      <div class="nav-actions">
+        <select class="lang-select" aria-label="Select Language">
+          <option value="en">English</option>
+          <option value="hi">Hindi</option>
+          <option value="ml">Malayalam</option>
+        </select>
+        <button type="button" class="btn-signin" onclick="alert('Demo sign-in modal triggered.')">Sign In</button>
+      </div>
     </nav>
 
-    <a href="#contact" class="nav-cta magnetic">
-      Let's talk <span>↗</span>
-    </a>
+    <div class="hero-content">
+      <h1>Unlimited movies, TV shows, and more</h1>
+      <p class="subtitle">Starts at $6.99. Cancel anytime.</p>
+      <p class="cta-caption">Ready to watch? Enter your email to create or restart your membership.</p>
 
+      <form class="signup-form" id="signupForm">
+        <input type="email" id="emailInput" placeholder="Email address" aria-label="Email address" required />
+        <button type="submit" class="btn-get-started">Get Started &gt;</button>
+        <div class="form-message" id="formMessage" role="status"></div>
+      </form>
+    </div>
   </header>
 
-
   <main>
-
-    <!-- HERO -->
-    <section id="home" class="hero section">
-
-      <div class="hero-copy reveal">
-
-        <p class="eyebrow">
-          <span class="pulse"></span>
-          Digital experiences / 2026
-        </p>
-
-        <h1>
-          We make the<br>
-          <em>web feel alive.</em>
-        </h1>
-
-        <p class="hero-text">
-          Strategy, design and motion combined into digital
-          experiences that people remember.
-        </p>
-
-        <div class="hero-actions">
-
-          <a href="#work" class="button primary magnetic">
-            Explore work <span>↓</span>
-          </a>
-
-          <a href="#about" class="button ghost">
-            Discover Nova
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="hero-visual reveal delay-2">
-
-        <div class="floating-card card-main">
-
-          <div class="card-top">
-            <span>01 / 04</span>
-            <span>Interactive</span>
+    <section class="section">
+      <h2>Trending Now</h2>
+      <div class="card-grid">
+        <article class="poster-card">
+          <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=600&q=80" alt="Neon Horizon movie scene" />
+          <div class="poster-info">
+            <h3>Neon Horizon</h3>
+            <span>Sci-Fi • 2026</span>
           </div>
-
-          <div class="sphere">
-
-            <div class="sphere-core"></div>
-
-            <i></i>
-            <i></i>
-            <i></i>
-
-          </div>
-
-          <div class="card-bottom">
-            <strong>Motion / Matter</strong>
-            <span>↗</span>
-          </div>
-
-        </div>
-
-
-        <div class="mini-card mini-1">
-          Awwwards<br>
-          <strong>Nominee</strong>
-        </div>
-
-        <div class="mini-card mini-2">
-          +
-          <strong class="counter" data-target="48">0</strong>
-          <br>
-          launches
-        </div>
-
-      </div>
-
-
-      <div class="scroll-cue">
-        <span></span>
-        Scroll to explore
-      </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-    <section id="about" class="section about">
-
-      <div class="section-label reveal">
-        01 — About
-      </div>
-
-      <div class="about-content">
-
-        <h2 class="reveal">
-          Ideas should<br>
-          <span>move people.</span>
-        </h2>
-
-        <div class="about-right reveal delay-1">
-
-          <p>
-            Nova is an independent digital studio creating bold
-            identities, immersive websites and products for
-            ambitious brands.
-          </p>
-
-          <p>
-            We blend thoughtful strategy with expressive visuals,
-            meaningful interaction and just enough magic.
-          </p>
-
-          <a href="#contact" class="text-link">
-            Start a conversation
-            <span>→</span>
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="stats reveal">
-
-        <div>
-          <strong class="counter" data-target="12">0</strong>
-          <span>Years creating</span>
-        </div>
-
-        <div>
-          <strong class="counter" data-target="48">0</strong>
-          <span>Projects shipped</span>
-        </div>
-
-        <div>
-          <strong class="counter" data-target="19">0</strong>
-          <span>Global awards</span>
-        </div>
-
-        <div>
-          <strong class="counter" data-target="14">0</strong>
-          <span>Countries reached</span>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- WORK -->
-    <section id="work" class="section work">
-
-      <div class="section-head reveal">
-
-        <div class="section-label">
-          02 — Selected work
-        </div>
-
-        <p>
-          Built for attention. Designed for impact.
-        </p>
-
-      </div>
-
-
-      <div class="projects">
-
-        <!-- Project 1 -->
-        <article class="project project-large reveal">
-
-          <div class="project-image image-a">
-
-            <div class="project-shape"></div>
-
-            <span>
-              View case study ↗
-            </span>
-
-          </div>
-
-          <div class="project-info">
-
-            <span>
-              01 / Brand + Digital
-            </span>
-
-            <h3>
-              Helio House
-            </h3>
-
-            <p>
-              Architecture of tomorrow
-            </p>
-
-          </div>
-
         </article>
-
-
-        <!-- Project 2 -->
-        <article class="project reveal delay-1">
-
-          <div class="project-image image-b">
-
-            <div class="project-shape"></div>
-
-            <span>
-              View case study ↗
-            </span>
-
+        <article class="poster-card">
+          <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" alt="Midnight Reel cinema camera" />
+          <div class="poster-info">
+            <h3>The Last Cut</h3>
+            <span>Thriller • Series</span>
           </div>
-
-          <div class="project-info">
-
-            <span>
-              02 / E-commerce
-            </span>
-
-            <h3>
-              Atelier 09
-            </h3>
-
-            <p>
-              Objects with intention
-            </p>
-
-          </div>
-
         </article>
-
-
-        <!-- Project 3 -->
-        <article class="project reveal delay-2">
-
-          <div class="project-image image-c">
-
-            <div class="project-shape"></div>
-
-            <span>
-              View case study ↗
-            </span>
-
+        <article class="poster-card">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Deep Orbit starry night" />
+          <div class="poster-info">
+            <h3>Deep Orbit</h3>
+            <span>Adventure • Movie</span>
           </div>
-
-          <div class="project-info">
-
-            <span>
-              03 / Product
-            </span>
-
-            <h3>
-              Orbit OS
-            </h3>
-
-            <p>
-              Work, reimagined
-            </p>
-
-          </div>
-
         </article>
-
+        <article class="poster-card">
+          <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80" alt="Echoes in Rain city lights" />
+          <div class="poster-info">
+            <h3>Echoes in Rain</h3>
+            <span>Drama • Series</span>
+          </div>
+        </article>
       </div>
-
     </section>
 
-
-    <!-- SERVICES -->
-    <section id="services" class="section services">
-
-      <div class="section-label reveal">
-        03 — Services
+    <section class="section">
+      <h2>More Reasons to Join</h2>
+      <div class="features-grid">
+        <div class="feature-box">
+          <h3>Enjoy on your TV</h3>
+          <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+        </div>
+        <div class="feature-box">
+          <h3>Download shows to watch offline</h3>
+          <p>Save your favorites easily and always have something to watch on the go.</p>
+        </div>
+        <div class="feature-box">
+          <h3>Watch everywhere</h3>
+          <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+        </div>
+        <div class="feature-box">
+          <h3>Create profiles for kids</h3>
+          <p>Send kids on adventures with their favorite characters in a space made just for them.</p>
+        </div>
       </div>
-
-      <h2 class="reveal">
-        From first spark<br>
-        to <span>final pixel.</span>
-      </h2>
-
-
-      <div class="service-list">
-
-        <div class="service reveal">
-
-          <span>01</span>
-
-          <h3>
-            Strategy
-          </h3>
-
-          <p>
-            Positioning, research, digital direction
-          </p>
-
-          <b>↗</b>
-
-        </div>
-
-
-        <div class="service reveal">
-
-          <span>02</span>
-
-          <h3>
-            Design
-          </h3>
-
-          <p>
-            Identity, UI/UX, art direction
-          </p>
-
-          <b>↗</b>
-
-        </div>
-
-
-        <div class="service reveal">
-
-          <span>03</span>
-
-          <h3>
-            Development
-          </h3>
-
-          <p>
-            Websites, products, creative technology
-          </p>
-
-          <b>↗</b>
-
-        </div>
-
-
-        <div class="service reveal">
-
-          <span>04</span>
-
-          <h3>
-            Motion
-          </h3>
-
-          <p>
-            Interaction, animation, 3D experiences
-          </p>
-
-          <b>↗</b>
-
-        </div>
-
-      </div>
-
     </section>
 
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact">
-
-      <div class="contact-glow"></div>
-
-      <div class="section-label reveal">
-        04 — Contact
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>What is StreamFlix?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            StreamFlix is a streaming service offering award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>How much does it cost?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Watch on your smartphone, tablet, smart TV, laptop, or streaming device for one fixed monthly fee with no contracts.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Where can I watch?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Watch anywhere, anytime, on the web or on any device with the app installed, including offline downloads on supported mobile devices.
+          </div>
+        </div>
       </div>
-
-
-      <div class="contact-content reveal">
-
-        <p class="eyebrow">
-          Have a good idea?
-        </p>
-
-        <h2>
-          Let's make<br>
-          <em>something great.</em>
-        </h2>
-
-        <a
-          href="mailto:hello@nova.studio"
-          class="email magnetic"
-        >
-          hello@nova.studio
-          <span>↗</span>
-        </a>
-
-      </div>
-
-
-      <footer>
-
-        <span>
-          © 2026 NOVA STUDIO
-        </span>
-
-        <span>
-          Designed with intention.
-        </span>
-
-        <span>
-          Instagram · Behance · LinkedIn
-        </span>
-
-      </footer>
-
     </section>
-
   </main>
 
+  <footer>
+    <p>Questions? Call 1-800-000-0000</p>
+    <ul class="footer-links">
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Help Center</a></li>
+      <li><a href="#">Account</a></li>
+      <li><a href="#">Media Center</a></li>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Cookie Preferences</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <p>Demo landing page built with HTML, CSS, and JavaScript.</p>
+  </footer>
 
-  <!-- Scroll Progress -->
-  <div class="progress"></div>
+  <script>
+    const signupForm = document.getElementById("signupForm");
+    const emailInput = document.getElementById("emailInput");
+    const formMessage = document.getElementById("formMessage");
 
+    signupForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const email = emailInput.value.trim();
+      if (email) {
+        formMessage.textContent = `Welcome! Ready to set up membership for ${email}.`;
+        emailInput.value = "";
+      }
+    });
 
-  <script src="script.js"></script>
-
+    document.querySelectorAll(".faq-question").forEach((button) => {
+      button.addEventListener("click", () => {
+        const item = button.parentElement;
+        item.classList.toggle("open");
+      });
+    });
+  </script>
 </body>
 </html>
-```
